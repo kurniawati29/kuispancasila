@@ -10,12 +10,27 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI', sans-serif;
+    font-family:'Segoe UI', Tahoma, sans-serif;
+}
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --pink:#ec4899;
+    --green:#10b981;
+    --yellow:#f59e0b;
+    --dark:#172554;
+    --text:#1f2937;
+    --soft:#f4f7ff;
+    --white:#ffffff;
 }
 
 body{
-    background:#f3f7ff;
-    color:#1f2937;
+    background:
+        radial-gradient(circle at top left, #dbeafe 0, transparent 30%),
+        radial-gradient(circle at bottom right, #fce7f3 0, transparent 35%),
+        linear-gradient(135deg,#f8fbff,#f5f3ff);
+    color:var(--text);
 }
 
 .app{
@@ -24,13 +39,16 @@ body{
 }
 
 .sidebar{
-    width:280px;
+    width:285px;
     height:100vh;
     position:fixed;
-    background:linear-gradient(180deg,#1e3a8a,#3730a3,#5b21b6);
+    left:0;
+    top:0;
     padding:25px 18px;
+    background:linear-gradient(180deg,#1e3a8a,#312e81,#581c87);
     color:white;
-    box-shadow:8px 0 25px rgba(30,58,138,.25);
+    box-shadow:10px 0 35px rgba(30,58,138,.22);
+    z-index:10;
 }
 
 .brand{
@@ -38,27 +56,28 @@ body{
 }
 
 .brand h1{
-    font-size:25px;
+    font-size:26px;
     margin-bottom:8px;
+    letter-spacing:.3px;
 }
 
 .brand p{
     font-size:13px;
     color:#dbeafe;
-    line-height:1.6;
+    line-height:1.7;
 }
 
 .menu button{
     width:100%;
-    padding:15px 16px;
-    margin-bottom:10px;
-    border:0;
-    border-radius:17px;
+    border:none;
     background:transparent;
     color:white;
+    padding:15px 16px;
+    margin-bottom:10px;
+    border-radius:18px;
     text-align:left;
     font-size:15px;
-    font-weight:700;
+    font-weight:800;
     cursor:pointer;
     transition:.25s;
 }
@@ -70,28 +89,46 @@ body{
 }
 
 .main{
-    margin-left:280px;
-    width:calc(100% - 280px);
-    padding:30px;
+    margin-left:285px;
+    width:calc(100% - 285px);
+    padding:28px;
 }
 
 .hero{
     background:linear-gradient(135deg,#60a5fa,#a78bfa,#f9a8d4);
     color:white;
-    border-radius:30px;
+    border-radius:32px;
     padding:32px;
-    margin-bottom:24px;
-    box-shadow:0 14px 35px rgba(99,102,241,.25);
+    margin-bottom:25px;
+    box-shadow:0 18px 40px rgba(99,102,241,.25);
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    background:rgba(255,255,255,.2);
+    border-radius:50%;
+    right:-60px;
+    top:-80px;
 }
 
 .hero h2{
-    font-size:34px;
-    margin-bottom:8px;
+    font-size:36px;
+    margin-bottom:10px;
+    position:relative;
+    z-index:2;
 }
 
 .hero p{
-    max-width:850px;
-    line-height:1.7;
+    max-width:900px;
+    line-height:1.8;
+    font-size:17px;
+    position:relative;
+    z-index:2;
 }
 
 .page{
@@ -99,26 +136,26 @@ body{
 }
 
 @keyframes fade{
-    from{opacity:0; transform:translateY(8px);}
-    to{opacity:1; transform:translateY(0);}
+    from{opacity:0;transform:translateY(10px);}
+    to{opacity:1;transform:translateY(0);}
 }
 
 .hidden{
-    display:none;
+    display:none!important;
 }
 
 .card{
-    background:white;
-    border-radius:26px;
+    background:rgba(255,255,255,.92);
+    border:1px solid #e0e7ff;
+    border-radius:28px;
     padding:26px;
     margin-bottom:22px;
-    box-shadow:0 12px 30px rgba(15,23,42,.08);
-    border:1px solid #e0e7ff;
+    box-shadow:0 14px 35px rgba(15,23,42,.08);
 }
 
 .title{
-    font-size:26px;
     color:#1e3a8a;
+    font-size:28px;
     margin-bottom:14px;
 }
 
@@ -135,22 +172,24 @@ ul{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
     gap:18px;
+    margin-bottom:22px;
 }
 
 .stat{
-    padding:24px;
-    border-radius:24px;
-    color:white;
     min-height:135px;
+    padding:22px;
+    border-radius:25px;
+    color:white;
     transition:.25s;
+    box-shadow:0 12px 26px rgba(15,23,42,.12);
 }
 
 .stat:hover{
-    transform:translateY(-5px);
+    transform:translateY(-6px);
 }
 
 .stat h3{
-    font-size:35px;
+    font-size:34px;
     margin-bottom:8px;
 }
 
@@ -159,55 +198,270 @@ ul{
 .stat:nth-child(3){background:linear-gradient(135deg,#db2777,#f9a8d4);}
 .stat:nth-child(4){background:linear-gradient(135deg,#059669,#86efac);}
 
-.quiz-frame-box{
-    background:#f8fbff;
-    border:2px dashed #bfdbfe;
-    border-radius:25px;
-    padding:18px;
-    margin-top:18px;
-}
-
-iframe{
-    width:100%;
-    height:780px;
-    border:0;
-    border-radius:22px;
-    background:white;
-    box-shadow:0 8px 25px rgba(15,23,42,.08);
-}
-
-.btn-link{
-    display:inline-block;
-    margin-top:14px;
-    padding:13px 20px;
-    background:linear-gradient(135deg,#2563eb,#7c3aed);
-    color:white;
-    text-decoration:none;
-    border-radius:16px;
-    font-weight:800;
-    transition:.25s;
-}
-
-.btn-link:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 20px rgba(37,99,235,.25);
-}
-
 .note{
     background:#eef2ff;
     border-left:6px solid #6366f1;
     padding:15px 18px;
-    border-radius:16px;
-    margin-top:14px;
+    border-radius:18px;
     color:#3730a3;
-    font-weight:600;
+    font-weight:700;
+    margin-top:15px;
+}
+
+.quiz-box{
+    background:#f8fbff;
+    border-radius:26px;
+    padding:24px;
+    border:1px solid #dbeafe;
+}
+
+.start-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:22px;
+    align-items:center;
+}
+
+.hero-icon{
+    min-height:230px;
+    border-radius:28px;
+    background:
+        radial-gradient(circle at 30% 20%,#fff 0,transparent 18%),
+        linear-gradient(135deg,#ef4444,#f97316,#fde047);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:95px;
+    box-shadow:inset 0 0 40px rgba(255,255,255,.25);
+}
+
+.input-group{
+    margin-top:15px;
+}
+
+.input-group label{
+    display:block;
+    font-weight:900;
+    margin-bottom:8px;
+    color:#334155;
+}
+
+input[type="text"]{
+    width:100%;
+    padding:16px 18px;
+    border:2px solid #dbeafe;
+    border-radius:18px;
+    font-size:16px;
+    outline:none;
+    background:white;
+    transition:.2s;
+}
+
+input[type="text"]:focus{
+    border-color:#6366f1;
+    box-shadow:0 0 0 5px rgba(99,102,241,.12);
+}
+
+.btn{
+    border:none;
+    padding:15px 22px;
+    border-radius:18px;
+    font-size:16px;
+    font-weight:900;
+    cursor:pointer;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 12px 25px rgba(37,99,235,.22);
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 30px rgba(37,99,235,.3);
+}
+
+.btn-full{
+    width:100%;
+    margin-top:20px;
+}
+
+.btn-soft{
+    background:#e2e8f0;
+    color:#334155;
+    box-shadow:none;
+}
+
+.quiz-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.pill{
+    background:#eef2ff;
+    color:#3730a3;
+    padding:10px 15px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:900;
+}
+
+.progress{
+    height:13px;
+    background:#dbeafe;
+    border-radius:999px;
+    overflow:hidden;
+    margin-bottom:24px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#2563eb,#7c3aed,#ec4899);
+    transition:.35s;
+}
+
+.question-title{
+    font-size:23px;
+    line-height:1.4;
+    margin-bottom:18px;
+    color:#111827;
+}
+
+.options{
+    display:grid;
+    gap:12px;
+}
+
+.option{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px;
+    border-radius:18px;
+    background:white;
+    border:2px solid #e5e7eb;
+    cursor:pointer;
+    font-weight:800;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#eef2ff;
+    border-color:#a5b4fc;
+    transform:translateX(4px);
+}
+
+.option input{
+    width:18px;
+    height:18px;
+    accent-color:#2563eb;
+}
+
+.option.selected{
+    background:#eef2ff;
+    border-color:#6366f1;
+    box-shadow:0 8px 20px rgba(99,102,241,.13);
+}
+
+.nav-btns{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:22px;
+}
+
+.result{
+    text-align:center;
+}
+
+.result-emoji{
+    font-size:75px;
+    margin-bottom:8px;
+}
+
+.score-circle{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    margin:18px auto;
+    background:conic-gradient(#22c55e 0deg,#22c55e var(--deg),#e5e7eb var(--deg),#e5e7eb 360deg);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 18px 40px rgba(34,197,94,.22);
+}
+
+.score-inner{
+    width:132px;
+    height:132px;
+    border-radius:50%;
+    background:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.score-number{
+    font-size:42px;
+    font-weight:1000;
+    color:#16a34a;
+}
+
+.score-label{
+    font-size:13px;
+    font-weight:900;
+    color:#64748b;
+}
+
+.result-info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:22px 0;
+}
+
+.info-box{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    padding:16px;
+    border-radius:18px;
+}
+
+.info-box b{
+    display:block;
+    font-size:28px;
+    color:#111827;
+}
+
+.info-box span{
+    font-size:13px;
+    color:#64748b;
+    font-weight:900;
+}
+
+.status-save{
+    margin-top:12px;
+    font-weight:800;
+    color:#2563eb;
+}
+
+.history-card{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    padding:18px;
+    border-radius:20px;
+    margin-top:14px;
 }
 
 .footer{
     text-align:center;
+    padding:18px;
     color:#64748b;
     font-size:13px;
-    padding:18px;
 }
 
 @media(max-width:850px){
@@ -235,11 +489,24 @@ iframe{
     }
 
     .hero h2{
-        font-size:26px;
+        font-size:27px;
     }
 
-    iframe{
-        height:700px;
+    .start-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-icon{
+        min-height:160px;
+        font-size:70px;
+    }
+
+    .result-info{
+        grid-template-columns:1fr;
+    }
+
+    .nav-btns{
+        flex-direction:column;
     }
 }
 </style>
@@ -268,7 +535,7 @@ iframe{
 
         <section class="hero">
             <h2>Website Kuis Pancasila</h2>
-            <p>Belajar nilai-nilai Pancasila dengan tampilan profesional, soft, rapi, dan mudah digunakan. Kuis terhubung langsung dengan Google Apps Script.</p>
+            <p>Belajar nilai-nilai Pancasila dengan tampilan profesional, soft, rapi, dan modern. Kuis langsung tersedia di halaman ini dan hasilnya dikirim ke Google Sheet.</p>
         </section>
 
         <section id="dashboard" class="page">
@@ -283,7 +550,7 @@ iframe{
                 </div>
                 <div class="stat">
                     <h3>Quiz</h3>
-                    <p>Kuis Online</p>
+                    <p>Kuis Interaktif</p>
                 </div>
                 <div class="stat">
                     <h3>Free</h3>
@@ -297,19 +564,16 @@ iframe{
                     Website ini dibuat sebagai media pembelajaran Pancasila berbasis web.
                     Tampilan dibuat seperti website profesional dengan sidebar di kiri dan konten utama di kanan.
                 </p>
-                <p>
-                    Silakan pilih menu pada sidebar untuk membuka materi, mengerjakan kuis, melihat hasil, atau membaca informasi website.
-                </p>
+                <div class="note">
+                    Pilih menu <b>Kuis Pancasila</b> untuk mulai mengerjakan kuis. Setelah selesai, skor akan muncul dan tersimpan.
+                </div>
             </div>
         </section>
 
         <section id="materi" class="page hidden">
             <div class="card">
                 <h2 class="title">Materi Pancasila</h2>
-                <p>
-                    Pancasila adalah dasar negara Indonesia yang menjadi pedoman dalam kehidupan bermasyarakat,
-                    berbangsa, dan bernegara.
-                </p>
+                <p>Pancasila adalah dasar negara Indonesia yang menjadi pedoman dalam kehidupan bermasyarakat, berbangsa, dan bernegara.</p>
 
                 <ul>
                     <li><b>Sila 1:</b> Ketuhanan Yang Maha Esa.</li>
@@ -328,42 +592,92 @@ iframe{
         <section id="kuis" class="page hidden">
             <div class="card">
                 <h2 class="title">Kuis Pancasila</h2>
-                <p>
-                    Klik atau isi kuis di bawah ini. Kuis sudah terhubung langsung dengan link Google Apps Script.
-                </p>
+                <p>Isi nama peserta, jawab 5 soal, lalu klik kirim jawaban. Nilai maksimal adalah 100.</p>
 
-                <div class="note">
-                    Jika kuis tidak tampil karena pengaturan akses Google Script, klik tombol buka kuis di bawah iframe.
+                <div class="quiz-box">
+
+                    <section id="startScreen">
+                        <div class="start-grid">
+                            <div>
+                                <h2 class="title">Siap Mulai Kuis?</h2>
+                                <p>Kuis ini dibuat sederhana, menarik, dan cocok untuk mengenal nilai dasar Pancasila.</p>
+
+                                <div class="input-group">
+                                    <label>Nama Peserta</label>
+                                    <input type="text" id="namaPeserta" placeholder="Tulis nama kamu di sini...">
+                                </div>
+
+                                <button class="btn btn-full" onclick="mulaiKuis()">Mulai Kuis 🚀</button>
+                            </div>
+
+                            <div class="hero-icon">🦅</div>
+                        </div>
+                    </section>
+
+                    <section id="quizScreen" class="hidden">
+                        <div class="quiz-head">
+                            <div class="pill" id="namaDisplay">Peserta</div>
+                            <div class="pill" id="nomorDisplay">Soal 1 dari 5</div>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+
+                        <h2 class="question-title" id="questionText"></h2>
+
+                        <div class="options" id="optionsBox"></div>
+
+                        <div class="nav-btns">
+                            <button class="btn btn-soft" onclick="sebelumnya()">← Sebelumnya</button>
+                            <button class="btn" id="nextBtn" onclick="selanjutnya()">Selanjutnya →</button>
+                        </div>
+                    </section>
+
+                    <section id="resultScreen" class="hidden">
+                        <div class="result">
+                            <div class="result-emoji" id="resultEmoji">🎉</div>
+                            <h2 id="resultTitle">Hasil Kuis</h2>
+                            <p id="resultName"></p>
+
+                            <div class="score-circle" id="scoreCircle">
+                                <div class="score-inner">
+                                    <div class="score-number" id="scoreText">100</div>
+                                    <div class="score-label">SKOR</div>
+                                </div>
+                            </div>
+
+                            <div class="result-info">
+                                <div class="info-box">
+                                    <b id="benarText">0</b>
+                                    <span>BENAR</span>
+                                </div>
+                                <div class="info-box">
+                                    <b id="salahText">0</b>
+                                    <span>SALAH</span>
+                                </div>
+                                <div class="info-box">
+                                    <b>5</b>
+                                    <span>TOTAL SOAL</span>
+                                </div>
+                            </div>
+
+                            <p class="status-save" id="saveStatus">Mengirim hasil...</p>
+
+                            <button class="btn" onclick="ulangKuis()">Ulangi Kuis 🔁</button>
+                        </div>
+                    </section>
+
                 </div>
-
-                <div class="quiz-frame-box">
-                    <iframe 
-                        src="https://script.google.com/macros/s/AKfycbzGH1kbswB3G4XNA3FHtmuHUuSclIoxyxCDduVV5TZ3DOYvgak--bWzS7HXInf5_euv/exec">
-                    </iframe>
-                </div>
-
-                <a class="btn-link" target="_blank" href="https://script.google.com/macros/s/AKfycbzGH1kbswB3G4XNA3FHtmuHUuSclIoxyxCDduVV5TZ3DOYvgak--bWzS7HXInf5_euv/exec">
-                    Buka Kuis di Tab Baru
-                </a>
             </div>
         </section>
 
         <section id="hasil" class="page hidden">
             <div class="card">
                 <h2 class="title">Hasil / Skor</h2>
-                <p>
-                    Hasil kuis mengikuti sistem yang ada di Google Apps Script.
-                    Jika Google Script kamu menyimpan skor, maka hasil dapat ditampilkan dari sistem tersebut.
-                </p>
-
-                <div class="note">
-                    Untuk versi GitHub Pages murni, halaman ini hanya sebagai tempat informasi hasil.
-                    Jika mau, nanti bisa dibuat agar Google Script mengirim balik data skor ke halaman ini.
+                <div id="historyBox">
+                    <p>Belum ada hasil kuis. Silakan kerjakan kuis terlebih dahulu.</p>
                 </div>
-
-                <a class="btn-link" target="_blank" href="https://script.google.com/macros/s/AKfycbzGH1kbswB3G4XNA3FHtmuHUuSclIoxyxCDduVV5TZ3DOYvgak--bWzS7HXInf5_euv/exec">
-                    Cek Kuis / Hasil
-                </a>
             </div>
         </section>
 
@@ -375,12 +689,12 @@ iframe{
                     Di dalamnya sudah terdapat HTML, CSS, dan JavaScript.
                 </p>
                 <p>
-                    Website ini cocok diupload ke GitHub Pages karena tidak membutuhkan hosting berbayar.
-                    Bagian kuis tetap dihubungkan dengan Google Apps Script sesuai link yang diberikan.
+                    Website ini cocok untuk GitHub Pages karena tidak membutuhkan hosting berbayar.
+                    Google Apps Script hanya digunakan untuk menerima dan menyimpan hasil kuis ke Google Sheet.
                 </p>
 
                 <div class="note">
-                    Catatan penting: agar publik bisa mengakses kuis, pengaturan deploy Google Apps Script harus dibuat “Anyone” atau “Siapa saja”.
+                    Pastikan Google Apps Script sudah dideploy sebagai Web App dan aksesnya diatur ke <b>Anyone / Siapa saja</b>.
                 </div>
             </div>
         </section>
@@ -394,16 +708,265 @@ iframe{
 </div>
 
 <script>
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGH1kbswB3G4XNA3FHtmuHUuSclIoxyxCDduVV5TZ3DOYvgak--bWzS7HXInf5_euv/exec";
+
+const soal = [
+    {
+        pertanyaan:"Pancasila adalah dasar negara ...",
+        opsi:{
+            A:"Jepang",
+            B:"Malaysia",
+            C:"Singapura",
+            D:"Indonesia"
+        },
+        jawaban:"D"
+    },
+    {
+        pertanyaan:"Lambang negara Indonesia adalah ...",
+        opsi:{
+            A:"Harimau",
+            B:"Elang",
+            C:"Garuda",
+            D:"Garuda Pancasila"
+        },
+        jawaban:"D"
+    },
+    {
+        pertanyaan:"Sila pertama Pancasila berbunyi ...",
+        opsi:{
+            A:"Kemanusiaan yang Adil dan Beradab",
+            B:"Persatuan Indonesia",
+            C:"Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan",
+            D:"Ketuhanan Yang Maha Esa"
+        },
+        jawaban:"D"
+    },
+    {
+        pertanyaan:"Warna dasar pada bendera Indonesia adalah ...",
+        opsi:{
+            A:"Biru dan Putih",
+            B:"Hijau dan Putih",
+            C:"Kuning dan Merah",
+            D:"Merah dan Putih"
+        },
+        jawaban:"D"
+    },
+    {
+        pertanyaan:"Sila ketiga Pancasila adalah ...",
+        opsi:{
+            A:"Keadilan Sosial bagi Seluruh Rakyat Indonesia",
+            B:"Ketuhanan Yang Maha Esa",
+            C:"Persatuan Indonesia",
+            D:"Kemanusiaan yang Adil dan Beradab"
+        },
+        jawaban:"C"
+    }
+];
+
+let indexSoal = 0;
+let jawabanUser = {};
+let nama = "";
+
 function showPage(pageId, btn){
-    const pages = document.querySelectorAll(".page");
-    pages.forEach(page => page.classList.add("hidden"));
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.add("hidden");
+    });
 
     document.getElementById(pageId).classList.remove("hidden");
 
-    const buttons = document.querySelectorAll(".menu button");
-    buttons.forEach(button => button.classList.remove("active"));
+    document.querySelectorAll(".menu button").forEach(button => {
+        button.classList.remove("active");
+    });
 
     btn.classList.add("active");
+
+    if(pageId === "hasil"){
+        tampilkanRiwayat();
+    }
+}
+
+function mulaiKuis(){
+    nama = document.getElementById("namaPeserta").value.trim();
+
+    if(nama === ""){
+        alert("Isi nama peserta terlebih dahulu.");
+        return;
+    }
+
+    indexSoal = 0;
+    jawabanUser = {};
+
+    document.getElementById("startScreen").classList.add("hidden");
+    document.getElementById("resultScreen").classList.add("hidden");
+    document.getElementById("quizScreen").classList.remove("hidden");
+
+    document.getElementById("namaDisplay").innerText = "👤 " + nama;
+
+    tampilkanSoal();
+}
+
+function tampilkanSoal(){
+    const data = soal[indexSoal];
+
+    document.getElementById("nomorDisplay").innerText = "Soal " + (indexSoal + 1) + " dari " + soal.length;
+    document.getElementById("questionText").innerText = (indexSoal + 1) + ". " + data.pertanyaan;
+    document.getElementById("progressBar").style.width = ((indexSoal + 1) / soal.length * 100) + "%";
+
+    let html = "";
+
+    for(let key in data.opsi){
+        let checked = jawabanUser[indexSoal] === key ? "checked" : "";
+        let selected = jawabanUser[indexSoal] === key ? "selected" : "";
+
+        html += `
+            <label class="option ${selected}">
+                <input type="radio" name="jawaban" value="${key}" ${checked} onchange="pilihJawaban('${key}')">
+                <span>${key}. ${data.opsi[key]}</span>
+            </label>
+        `;
+    }
+
+    document.getElementById("optionsBox").innerHTML = html;
+
+    const nextBtn = document.getElementById("nextBtn");
+
+    if(indexSoal === soal.length - 1){
+        nextBtn.innerText = "Kirim Jawaban ✨";
+    }else{
+        nextBtn.innerText = "Selanjutnya →";
+    }
+}
+
+function pilihJawaban(pilihan){
+    jawabanUser[indexSoal] = pilihan;
+    tampilkanSoal();
+}
+
+function selanjutnya(){
+    if(!jawabanUser[indexSoal]){
+        alert("Pilih jawaban terlebih dahulu.");
+        return;
+    }
+
+    if(indexSoal < soal.length - 1){
+        indexSoal++;
+        tampilkanSoal();
+    }else{
+        tampilkanHasil();
+    }
+}
+
+function sebelumnya(){
+    if(indexSoal > 0){
+        indexSoal--;
+        tampilkanSoal();
+    }
+}
+
+function tampilkanHasil(){
+    let benar = 0;
+
+    for(let i = 0; i < soal.length; i++){
+        if(jawabanUser[i] === soal[i].jawaban){
+            benar++;
+        }
+    }
+
+    let salah = soal.length - benar;
+    let skor = benar * 20;
+    let derajat = skor / 100 * 360;
+
+    document.getElementById("quizScreen").classList.add("hidden");
+    document.getElementById("resultScreen").classList.remove("hidden");
+
+    document.getElementById("resultName").innerHTML = "Nama peserta: <b>" + nama + "</b>";
+    document.getElementById("scoreText").innerText = skor;
+    document.getElementById("benarText").innerText = benar;
+    document.getElementById("salahText").innerText = salah;
+    document.getElementById("scoreCircle").style.setProperty("--deg", derajat + "deg");
+
+    if(skor === 100){
+        document.getElementById("resultEmoji").innerText = "🏆";
+        document.getElementById("resultTitle").innerText = "Mantap! Nilai Sempurna!";
+    }else if(skor >= 80){
+        document.getElementById("resultEmoji").innerText = "🎉";
+        document.getElementById("resultTitle").innerText = "Keren! Hampir Sempurna!";
+    }else if(skor >= 60){
+        document.getElementById("resultEmoji").innerText = "🔥";
+        document.getElementById("resultTitle").innerText = "Bagus! Tingkatkan Lagi!";
+    }else{
+        document.getElementById("resultEmoji").innerText = "🌱";
+        document.getElementById("resultTitle").innerText = "Tetap Semangat Belajar!";
+    }
+
+    const hasil = {
+        nama:nama,
+        skor:skor,
+        benar:benar,
+        salah:salah,
+        total:soal.length,
+        waktu:new Date().toLocaleString("id-ID")
+    };
+
+    localStorage.setItem("hasilKuisPancasila", JSON.stringify(hasil));
+
+    kirimKeGoogleSheet(hasil);
+}
+
+function kirimKeGoogleSheet(hasil){
+    const status = document.getElementById("saveStatus");
+    status.innerText = "Mengirim hasil ke Google Sheet...";
+
+    const formData = new FormData();
+    formData.append("nama", hasil.nama);
+    formData.append("skor", hasil.skor);
+    formData.append("benar", hasil.benar);
+    formData.append("salah", hasil.salah);
+
+    fetch(GOOGLE_SCRIPT_URL, {
+        method:"POST",
+        mode:"no-cors",
+        body:formData
+    })
+    .then(() => {
+        status.innerText = "Hasil berhasil dikirim dan tersimpan.";
+    })
+    .catch(() => {
+        status.innerText = "Hasil tersimpan di browser, tetapi gagal dikirim ke Google Sheet.";
+    });
+}
+
+function ulangKuis(){
+    indexSoal = 0;
+    jawabanUser = {};
+    nama = "";
+
+    document.getElementById("namaPeserta").value = "";
+    document.getElementById("resultScreen").classList.add("hidden");
+    document.getElementById("quizScreen").classList.add("hidden");
+    document.getElementById("startScreen").classList.remove("hidden");
+}
+
+function tampilkanRiwayat(){
+    const data = JSON.parse(localStorage.getItem("hasilKuisPancasila"));
+
+    if(!data){
+        document.getElementById("historyBox").innerHTML = `
+            <p>Belum ada hasil kuis. Silakan kerjakan kuis terlebih dahulu.</p>
+        `;
+        return;
+    }
+
+    document.getElementById("historyBox").innerHTML = `
+        <div class="history-card">
+            <h3>Skor Terakhir</h3>
+            <p>Nama Peserta: <b>${data.nama}</b></p>
+            <p>Skor: <b>${data.skor}</b></p>
+            <p>Benar: <b>${data.benar}</b> dari <b>${data.total}</b> soal</p>
+            <p>Salah: <b>${data.salah}</b></p>
+            <p>Waktu: <b>${data.waktu}</b></p>
+        </div>
+    `;
 }
 </script>
 
