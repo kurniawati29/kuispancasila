@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kuis Pancasila</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fff1f2, #eef6ff, #e0fff8);
+      color: #1f2937;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 270px;
+      background: linear-gradient(180deg, #b91c1c, #dc2626, #fb7185);
+      color: white;
+      padding: 24px 18px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      box-shadow: 8px 0 30px rgba(185, 28, 28, 0.25);
+    }
+
+    .brand {
+      background: rgba(255,255,255,0.16);
+      padding: 18px;
+      border-radius: 22px;
+      margin-bottom: 25px;
+    }
+
+    .brand h1 {
+      font-size: 25px;
+      margin-bottom: 6px;
+    }
+
+    .brand p {
+      font-size: 13px;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+
+    .menu-title {
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      margin: 18px 8px 10px;
+    }
+
+    .menu a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+      padding: 13px 14px;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      font-weight: bold;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      background: rgba(255,255,255,0.22);
+      transform: translateX(4px);
+    }
+
+    .main {
+      margin-left: 270px;
+      width: calc(100% - 270px);
+      padding: 25px;
+    }
+
+    .topbar {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      padding: 18px 24px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .topbar h2 {
+      color: #b91c1c;
+      font-size: 26px;
+    }
+
+    .status {
+      background: #fff1f2;
+      color: #be123c;
+      padding: 10px 15px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .page {
+      display: none;
+      animation: muncul 0.3s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes muncul {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #dc2626, #fb7185, #facc15);
+      color: white;
+      padding: 32px;
+      border-radius: 28px;
+      box-shadow: 0 18px 45px rgba(220, 38, 38, 0.25);
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -55px;
+      top: -70px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+    }
+
+    .hero h3 {
+      font-size: 34px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 720px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid #f1f5f9;
+    }
+
+    .card .icon {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .card h4 {
+      color: #b91c1c;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #64748b;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .materi-box {
+      background: white;
+      border-radius: 26px;
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      line-height: 1.7;
+    }
+
+    .materi-box h3 {
+      color: #b91c1c;
+      margin-bottom: 12px;
+      font-size: 26px;
+    }
+
+    .materi-box ul {
+      padding-left: 22px;
+      margin-top: 12px;
+    }
+
+    .quiz-wrapper {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      border: 1px solid #e5e7eb;
+    }
+
+    .quiz-header {
+      padding: 18px 22px;
+      background: linear-gradient(135deg, #dc2626, #fb7185, #facc15);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .quiz-header h3 {
+      font-size: 23px;
+    }
+
+    .open-btn {
+      background: rgba(255,255,255,0.22);
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 999px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .open-btn:hover {
+      background: rgba(255,255,255,0.35);
+    }
+
+    iframe {
+      width: 100%;
+      height: 720px;
+      border: none;
+      display: block;
+      background: white;
+    }
+
+    .footer {
+      text-align: center;
+      color: #64748b;
+      margin-top: 22px;
+      font-size: 13px;
+    }
+
+    @media(max-width: 850px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        position: relative;
+        width: 100%;
+        bottom: auto;
+      }
+
+      .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 16px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      iframe {
+        height: 780px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>🇮🇩 Kuis Pancasila</h1>
+        <p>Website kuis edukasi sederhana, gratis, dan bisa diakses publik.</p>
+      </div>
+
+      <div class="menu-title">MENU UTAMA</div>
+
+      <nav class="menu">
+        <a class="active" onclick="showPage('dashboard', this)">🏠 Dashboard</a>
+        <a onclick="showPage('materi', this)">📚 Materi</a>
+        <a onclick="showPage('kuis', this)">📝 Kuis</a>
+        <a onclick="showPage('tentang', this)">👤 Tentang</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+
+      <div class="topbar">
+        <h2 id="pageTitle">Dashboard</h2>
+        <div class="status">Online via GitHub Pages + Google Apps Script</div>
+      </div>
+
+      <section id="dashboard" class="page active">
+        <div class="hero">
+          <h3>Selamat Datang di Kuis Pancasila 🦅</h3>
+          <p>
+            Website ini dibuat untuk belajar Pancasila dengan cara yang mudah,
+            menyenangkan, dan dapat diakses secara umum melalui internet.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="icon">📚</div>
+            <h4>Materi Ringan</h4>
+            <p>Berisi pengenalan singkat tentang Pancasila dan nilai-nilainya.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">📝</div>
+            <h4>Kuis Online</h4>
+            <p>Kuis terhubung langsung dengan Google Apps Script yang sudah kamu buat.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🌐</div>
+            <h4>Gratis Publik</h4>
+            <p>Website utama bisa diupload gratis ke GitHub Pages tanpa biaya hosting.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="materi" class="page">
+        <div class="materi-box">
+          <h3>📚 Materi Singkat Pancasila</h3>
+          <p>
+            Pancasila adalah dasar negara Indonesia. Pancasila menjadi pedoman
+            hidup bangsa Indonesia dalam bermasyarakat, berbangsa, dan bernegara.
+          </p>
+
+          <ul>
+            <li>Ketuhanan Yang Maha Esa</li>
+            <li>Kemanusiaan yang Adil dan Beradab</li>
+            <li>Persatuan Indonesia</li>
+            <li>Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</li>
+            <li>Keadilan Sosial bagi Seluruh Rakyat Indonesia</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="kuis" class="page">
+        <div class="quiz-wrapper">
+          <div class="quiz-header">
+            <h3>📝 Kuis Pancasila</h3>
+            <a class="open-btn" target="_blank" href="https://script.google.com/macros/s/AKfycbzGH1kbswB3G4XNA3FHtmuHUuSclIoxyxCDduVV5TZ3DOYvgak--bWzS7HXInf5_euv/exec">
+              Buka Fullscreen ↗
+            </a>
+          </div>
+
+          <iframe
+            src="https://script.google.com/macros/s/AKfycbzGH1kbswB3G4XNA3FHtmuHUuSclIoxyxCDduVV5TZ3DOYvgak--bWzS7HXInf5_euv/exec"
+            loading="lazy">
+          </iframe>
+        </div>
+      </section>
+
+      <section id="tentang" class="page">
+        <div class="materi-box">
+          <h3>👤 Tentang Website</h3>
+          <p>
+            Website ini dibuat sebagai media pembelajaran interaktif tentang Pancasila.
+            Halaman utama dapat dipublikasikan melalui GitHub Pages, sedangkan kuisnya
+            terhubung dengan Google Apps Script.
+          </p>
+          <p>
+            Dengan konsep ini, website bisa tetap gratis, mudah dibagikan, dan dapat
+            dikembangkan lagi menjadi portal kuis dengan banyak topik.
+          </p>
+        </div>
+      </section>
+
+      <div class="footer">
+        © 2026 Kuis Pancasila | Dibuat untuk pembelajaran
+      </div>
+
+    </main>
+
+  </div>
+
+  <script>
+    function showPage(pageId, element) {
+      const pages = document.querySelectorAll('.page');
+      const menus = document.querySelectorAll('.menu a');
+
+      pages.forEach(page => page.classList.remove('active'));
+      menus.forEach(menu => menu.classList.remove('active'));
+
+      document.getElementById(pageId).classList.add('active');
+      element.classList.add('active');
+
+      const titleMap = {
+        dashboard: 'Dashboard',
+        materi: 'Materi Pancasila',
+        kuis: 'Kuis Pancasila',
+        tentang: 'Tentang Website'
+      };
+
+      document.getElementById('pageTitle').innerText = titleMap[pageId];
+    }
+  </script>
+
+</body>
+</html>
